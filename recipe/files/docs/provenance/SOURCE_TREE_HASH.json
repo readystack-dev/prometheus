@@ -1,0 +1,9 @@
+{
+  "schema": "kitforge.source_tree_hash.v1",
+  "slug": "prometheus",
+  "repo": "https://github.com/prometheus/prometheus",
+  "ref": "v3.16.0",
+  "commit": "e2e28adeee2c5883d000fc82aca6008cfbf7e96d",
+  "tree_listing_sha256": "dbee8a20cb6bdde803a797b6ba7906ee1c8a010292fce25e73721ed51e1c0980",
+  "file_count": 1714
+}

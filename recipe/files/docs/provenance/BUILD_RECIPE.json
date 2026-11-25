@@ -1,0 +1,89 @@
+{
+  "schema": "kitforge.build_recipe.v1",
+  "slug": "prometheus",
+  "image": "readystack/prometheus:v3.16.0-CE-ubuntu24.04-r4",
+  "build_method": "source-rebuild-go",
+  "source": {
+    "repo": "https://github.com/prometheus/prometheus",
+    "ref": "v3.16.0",
+    "builder_image": "golang:1.26.11-bookworm",
+    "go_version_required": "1.25.0",
+    "_version_note": "v3.12.0 is the LATEST prometheus GA (2026-05-28). Queue products MUST package the latest upstream version (owner policy 2026-06-25). v3.12.0 also clears all 5 fixable C/H of the older 3.9.x line purely upstream: grpc 1.81.1, otel/otel-sdk 1.44.0, and github.com/docker/docker (CVE-2026-34040, no v29 module fix) REPLACED by the fixed moby/moby/v2 client modules. One dep_bump remains: x/crypto 0.51.0 (v3.12.0's pin) -> latest, for 9 of its own CVEs (verdict-caught).",
+    "vendor_build": {
+      "tooling": [
+        "nodejs",
+        "npm",
+        "make",
+        "pnpm"
+      ],
+      "node_version": "24",
+      "cmds": [
+        "make assets-compress"
+      ],
+      "_note": "Run prometheus's OWN UI build (generic 'follow upstream's build'). 'make assets-compress' = check-node-version + ui-install (installs web/ui AND the separated web/ui/react-app) + ui-build + scripts/compress_assets.sh (gzips static/ + GENERATES web/ui/embed.go defining EmbedFS via //go:embed). This is what assets_embed.go (//go:build builtinassets) needs \u2014 a bare 'cp embed.go.tmpl embed.go' does NOT define EmbedFS (verified). Binaries still need build_tags=[builtinassets].",
+      "node_dist": {
+        "version": "24.22.3",
+        "sha256": "061ec3e3062115705b56b51fa9cc330ab50d34b6969387d4e4b1a50c6809acc2"
+      }
+    },
+    "source_date_epoch": 1795161192,
+    "source_date_epoch_provenance": "the time release v3.16.0-CE-ubuntu24.04-r4 was cut (2026-11-20T07:53:12Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit e2e28adeee2c, dated 2026-11-05T15:06:51Z (source.commit_epoch).",
+    "commit": "e2e28adeee2c5883d000fc82aca6008cfbf7e96d",
+    "source_date_epoch_basis": "release-cut",
+    "commit_epoch": 1793891211
+  },
+  "binaries_from_source": [
+    {
+      "name": "prometheus",
+      "main_pkg": "./cmd/prometheus",
+      "cgo_enabled": 0,
+      "build_tags": [
+        "builtinassets"
+      ],
+      "ldflags": "-s -w -X github.com/prometheus/common/version.Version=@VERSION_BARE@ -X github.com/prometheus/common/version.Branch=HEAD",
+      "out_path": "/usr/bin/prometheus",
+      "verify_subcmd": "--version"
+    },
+    {
+      "name": "promtool",
+      "main_pkg": "./cmd/promtool",
+      "cgo_enabled": 0,
+      "build_tags": [
+        "builtinassets"
+      ],
+      "ldflags": "-s -w -X github.com/prometheus/common/version.Version=@VERSION_BARE@",
+      "out_path": "/usr/bin/promtool",
+      "verify_subcmd": "--version"
+    }
+  ],
+  "runtime_packages": [
+    "base-files",
+    "base-passwd",
+    "ca-certificates",
+    "coreutils",
+    "dash",
+    "gzip",
+    "libacl1",
+    "libc6",
+    "libpcre2-8-0",
+    "libselinux1",
+    "libssl3t64",
+    "openssl",
+    "tar",
+    "tzdata"
+  ],
+  "runtime_base": {
+    "kind": "chisel",
+    "shell": true,
+    "tools": [
+      "tar"
+    ],
+    "slices": [
+      "gzip_bins"
+    ],
+    "provides": [
+      "gzip"
+    ],
+    "packages": "vendored/chisel/packages.tsv"
+  }
+}

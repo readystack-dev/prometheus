@@ -1,0 +1,125 @@
+{
+  "apt_refresh": [
+    {
+      "min_version": "10.42-4ubuntu2.2",
+      "package": "libpcre2-8-0",
+      "reason": "UBUNTU-CVE-2026-103111, UBUNTU-CVE-2026-86145, UBUNTU-CVE-2026-89157, UBUNTU-CVE-2026-89161: libpcre2-8-0 10.42-4ubuntu2.1 -> 10.42-4ubuntu2.2"
+    },
+    {
+      "min_version": "2.39-0ubuntu8.12",
+      "package": "libc6",
+      "reason": "CVE-2026-18374, CVE-2026-84243, CVE-2026-8674, CVE-2026-86805 \u2026: libc6 2.39-0ubuntu8.9 -> 2.39-0ubuntu8.12"
+    }
+  ],
+  "binaries_from_component_images": [],
+  "binaries_from_source": [
+    {
+      "build_tags": [
+        "builtinassets"
+      ],
+      "cgo_enabled": 0,
+      "ldflags": "-s -w -X github.com/prometheus/common/version.Version=@VERSION_BARE@ -X github.com/prometheus/common/version.Branch=HEAD",
+      "main_pkg": "./cmd/prometheus",
+      "name": "prometheus",
+      "out_path": "/usr/bin/prometheus",
+      "verify_subcmd": "--version"
+    },
+    {
+      "build_tags": [
+        "builtinassets"
+      ],
+      "cgo_enabled": 0,
+      "ldflags": "-s -w -X github.com/prometheus/common/version.Version=@VERSION_BARE@",
+      "main_pkg": "./cmd/promtool",
+      "name": "promtool",
+      "out_path": "/usr/bin/promtool",
+      "verify_subcmd": "--version"
+    }
+  ],
+  "build_method": "source-rebuild-go",
+  "chain_id": 1143,
+  "dep_bumps": [
+    {
+      "module": "golang.org/x/crypto",
+      "to": "v0.56.0",
+      "why": "v3.12.0 pins x/crypto 0.51.0 which carries 7 CRITICAL + 2 HIGH CVEs (CVE-2026-46595/42508/39834/39833/39832/39831/39830 + HIGH 46597/39829), ALL fixed in 0.52.0 \u2014 bump clears all 9 fixable C/H RAISED to 0.52.0 by cve-presweep (GHSA-x527-x647-q7gg). Raised v0.52.0 -> v0.56.0 on 2026-09-26: a new fixable critical/high advisory is fixed in 0.56.0 (syncthing 2.1.5 verdict)."
+    },
+    {
+      "module": "google.golang.org/grpc",
+      "to": "v1.83.2",
+      "why": "GHSA published 2026-09-25 (2 fixable critical/high in grpc <1.83.1, found by gitea 1.27.3's verdict). Floor only: raised where the product's grpc is older, no-op where absent or newer."
+    },
+    {
+      "module": "golang.org/x/net",
+      "to": "v0.62.0",
+      "why": "CVE-2026-78661 / GO-2026-6860 (HIGH, published 2026-10-27): golang.org/x/net below 0.62.0 is in the vulnerable range; the build had 0.60.0, this floor's previous value (raised 2026-10-10 as the Go 1.26.9 companion). Found by the verdict of chain 730 (Docker Scout CLI, 2026-11-05); fixed in 0.62.0."
+    },
+    {
+      "module": "github.com/klauspost/compress",
+      "to": "v1.18.7",
+      "why": "CVE-2026-63209 (GHSA-259r-337f-4rfw, HIGH per GitHub; Scout rates it lower) \u2014 OSV cross-check on zitadel 516 and harbor 519; fleet-wide floor 2026-10-10"
+    }
+  ],
+  "expected_residuals": [],
+  "images": [
+    {
+      "digest": "sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0",
+      "ref": "golang:1.26.11-bookworm",
+      "role": "builder"
+    },
+    {
+      "digest": "sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0",
+      "ref": "golang:1.26.11-bookworm",
+      "role": "offline_builder"
+    },
+    {
+      "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
+      "ref": "ubuntu:24.04",
+      "role": "base"
+    }
+  ],
+  "mod_replaces": [],
+  "runtime_base": {
+    "kind": "chisel",
+    "provides": [
+      "gzip"
+    ],
+    "shell": true,
+    "slices": [
+      "gzip_bins"
+    ],
+    "tools": [
+      "tar"
+    ]
+  },
+  "schema": "kitforge.toolchain_lock.v1",
+  "slug": "prometheus",
+  "source": {
+    "builder_image": "golang:1.26.11-bookworm",
+    "commit": "e2e28adeee2c5883d000fc82aca6008cfbf7e96d",
+    "commit_epoch": 1793891211,
+    "go_version_required": "1.25.0",
+    "ref": "v3.16.0",
+    "repo": "https://github.com/prometheus/prometheus",
+    "source_date_epoch": 1795161192,
+    "source_date_epoch_basis": "release-cut",
+    "source_date_epoch_provenance": "the time release v3.16.0-CE-ubuntu24.04-r4 was cut (2026-11-20T07:53:12Z), by scripts/retarget.py --rev-bump: ReadyStack dates an image by when its release was packaged (owner 2026-11-10), recorded here once and used by every rebuild of the release; it builds upstream commit e2e28adeee2c, dated 2026-11-05T15:06:51Z (source.commit_epoch).",
+    "vendor_build": {
+      "cmds": [
+        "make assets-compress"
+      ],
+      "node_dist": {
+        "sha256": "061ec3e3062115705b56b51fa9cc330ab50d34b6969387d4e4b1a50c6809acc2",
+        "version": "24.22.3"
+      },
+      "node_version": "24",
+      "tooling": [
+        "nodejs",
+        "npm",
+        "make",
+        "pnpm"
+      ]
+    }
+  },
+  "version": "v3.16.0"
+}

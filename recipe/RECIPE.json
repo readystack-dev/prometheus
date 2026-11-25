@@ -1,0 +1,306 @@
+{
+ "schema": "readystack.recipe.v1",
+ "slug": "prometheus",
+ "tag": "v3.16.0-CE-ubuntu24.04-r4",
+ "tarball": "ReadyStack-prometheus-v3.16.0-CE-ubuntu24.04-r4.tar.gz",
+ "tarball_sha256": "6e0a4bc93fb93c3ca3313f92f6114ae57c9c98163792e9fdcdb506dac253ee6a",
+ "kit_root": "v3.16.0-CE-ubuntu24.04-r4",
+ "generated_at": "2026-11-22T17:42:56Z",
+ "generator": "KitForge release/recipe_publish.py",
+ "dockerfile": "Dockerfile.offline.pinned",
+ "build_script": "BUILD_OFFLINE.sh",
+ "preview_lines": 24,
+ "pins": {
+  "upstream": {
+   "repo": "https://github.com/prometheus/prometheus",
+   "ref": "v3.16.0",
+   "commit": "e2e28adeee2c5883d000fc82aca6008cfbf7e96d",
+   "url": "https://github.com/prometheus/prometheus/tree/e2e28adeee2c5883d000fc82aca6008cfbf7e96d",
+   "from": "docs/provenance/BUILD_RECIPE.json"
+  },
+  "fetches": [
+   {
+    "kind": "git",
+    "url": "https://github.com/prometheus/prometheus",
+    "ref": "v3.16.0"
+   },
+   {
+    "kind": "http",
+    "url": "https://nodejs.org/dist/v24.22.3/node-v24.22.3-linux-x64.tar.gz"
+   },
+   {
+    "kind": "http",
+    "url": "https://github.com/canonical/chisel/releases/download/v1.5.1/chisel_v1.5.1_linux_amd64.tar.gz"
+   },
+   {
+    "kind": "http",
+    "url": "https://github.com/canonical/chisel-releases/archive/f2600d3aa90123db6d44bb1441a99afc8b5847d9.tar.gz"
+   }
+  ],
+  "bases": [
+   {
+    "ref": "golang:1.26.11-bookworm@sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0",
+    "image": "golang:1.26.11-bookworm",
+    "digest": "sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0"
+   },
+   {
+    "ref": "ubuntu:24.04@sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289",
+    "image": "ubuntu:24.04",
+    "digest": "sha256:9c7f200c07e3d4a03e7249d2c16bf66a51120fb876aa2242cf31451412543289"
+   }
+  ],
+  "toolchain": {
+   "buildkit": "moby/buildkit:v0.31.2",
+   "buildkit_image_digest": "sha256:e0e67ea9c4bb07bdef683e29f70f3b623d1eb9c82274a9ec04e6bb0511449fb0",
+   "builder_images": [
+    "golang:1.26.11-bookworm@sha256:dc40a13b61304647ed7e5d581d246b86413dfc29d63c6d018310feb93cd98fc0"
+   ]
+  },
+  "build_method": "source-rebuild-go",
+  "source_date_epoch": 1795161192,
+  "source_date_epoch_utc": "2026-11-20T07:53:12Z",
+  "target": {
+   "image_manifest_digest": "sha256:9c5c22442864bc05e0e0c197e131e31c30b56da95a342501687f9f950770e3fe",
+   "config_digest": "sha256:ba4843f192c3764916644f54e1a1edc2625f57677a2e93c3c8818639c39b74a4",
+   "image": "readystack/prometheus:v3.16.0-CE-ubuntu24.04-r4"
+  },
+  "checksummed_files": 108956
+ },
+ "files": [
+  {
+   "path": "BASES.tsv",
+   "size": 264,
+   "sha256": "4b98a700d33a9f62c6299744be2f31889777ec9f3b1cf9150d02a25daa1a297d",
+   "lines": 2,
+   "public": "full"
+  },
+  {
+   "path": "BUILD_OFFLINE.sh",
+   "size": 8856,
+   "sha256": "6ab4f08a6ec775b32d854f03413b30ecfe555ddba78cf0de956235f5a2a39542",
+   "lines": 162,
+   "public": "preview",
+   "preview_lines": 24
+  },
+  {
+   "path": "CHECKSUMS.sha256",
+   "size": 22196235,
+   "sha256": "e1dff95c081316206a485646ff62d5bbff9166f62cd9f1e766c95f70154f2e02",
+   "lines": 108956,
+   "public": "account",
+   "stored": "gzip"
+  },
+  {
+   "path": "DOCKERFILE_NAME.txt",
+   "size": 26,
+   "sha256": "9aadd1ede68e016a6f163c97befc5ff2fcdc8ebd4f84b108dba63cb195fa8c84",
+   "lines": 1,
+   "public": "full"
+  },
+  {
+   "path": "Dockerfile",
+   "size": 5052,
+   "sha256": "9dc61fdbaf04d6aa36278d33e9c8c7fd78a6c1af488c491d707d787d7eba206f",
+   "lines": 59,
+   "public": "account"
+  },
+  {
+   "path": "Dockerfile.offline",
+   "size": 5052,
+   "sha256": "9dc61fdbaf04d6aa36278d33e9c8c7fd78a6c1af488c491d707d787d7eba206f",
+   "lines": 59,
+   "public": "account"
+  },
+  {
+   "path": "Dockerfile.offline.pinned",
+   "size": 5052,
+   "sha256": "9dc61fdbaf04d6aa36278d33e9c8c7fd78a6c1af488c491d707d787d7eba206f",
+   "lines": 59,
+   "public": "preview",
+   "preview_lines": 24
+  },
+  {
+   "path": "Dockerfile.vendor",
+   "size": 6496,
+   "sha256": "3d3c244e3b8c6681367cea6469436cd86d10d552c7717992bf83acff53af1e32",
+   "lines": 50,
+   "public": "account"
+  },
+  {
+   "path": "FILE_MODES.tsv",
+   "size": 17322701,
+   "sha256": "e077514b4ba4a4cdd751126320949a1abac82bb2c3c93f9025a5ea979fe94cfb",
+   "lines": 126106,
+   "public": "account",
+   "stored": "gzip"
+  },
+  {
+   "path": "MANIFEST.txt",
+   "size": 14787257,
+   "sha256": "0f3b76b99487929c84dfdac41e3b4f0c24206741f1567f765c9b9d7c2386c794",
+   "lines": 108958,
+   "public": "account",
+   "stored": "gzip"
+  },
+  {
+   "path": "README.md",
+   "size": 3368,
+   "sha256": "81fb22f26f0dc14b182ee2a73f365e65b07e192827d5ded7bee9ae8379ad9d4d",
+   "lines": 40,
+   "public": "account"
+  },
+  {
+   "path": "SOURCE_DATE_EPOCH.txt",
+   "size": 11,
+   "sha256": "fd43575c7032f253c3be2e2493092ddd083b99e843b1a31e47c97fdbf91ab2d9",
+   "lines": 1,
+   "public": "full"
+  },
+  {
+   "path": "TARGET_DIGEST.txt",
+   "size": 288,
+   "sha256": "ad6f2bd57c9c62de743eaa8c9509bc91466d432523598c8dd829511cb4182117",
+   "lines": 6,
+   "public": "full"
+  },
+  {
+   "path": "TRADEMARK.md",
+   "size": 491,
+   "sha256": "a6d597e769c5ea690127493093865423509577c68c689eff47df95685569057f",
+   "lines": 13,
+   "public": "account"
+  },
+  {
+   "path": "VERIFY_OFFLINE.sh",
+   "size": 10153,
+   "sha256": "3e8184ea230cfd8f41f977e26be6bf7bd03112c396c517837ce0c7de4f7399dd",
+   "lines": 165,
+   "public": "account"
+  },
+  {
+   "path": "docs/PROVENANCE.md",
+   "size": 2685,
+   "sha256": "d3ca99730f25d95714f45a026d3e357e848b3ce420f1bf7a28c3b8a0bfdd9b4b",
+   "lines": 36,
+   "public": "account"
+  },
+  {
+   "path": "docs/REBUILD.md",
+   "size": 6139,
+   "sha256": "603f561054846611ee7cb5d34c092104bb5356b2b0533be17bda09f9ca613878",
+   "lines": 60,
+   "public": "account"
+  },
+  {
+   "path": "docs/VERIFY.md",
+   "size": 2047,
+   "sha256": "5010e6926b0d41fd0d55e16059113ae73e5e7aab14b778cddc52cfaa0f0f9c7f",
+   "lines": 34,
+   "public": "account"
+  },
+  {
+   "path": "docs/provenance/BASE_IMAGE_DIGESTS.lock",
+   "size": 76,
+   "sha256": "fa7f0c25cf173c1a1515958e60b2ce109eacd755d2313a66d483deee7fca515c",
+   "lines": 2,
+   "public": "full"
+  },
+  {
+   "path": "docs/provenance/BUILD_RECIPE.json",
+   "size": 3445,
+   "sha256": "994a14e0ee5e216338e07a966149f4abe0294cb796860d5dd1d2f681a04c23cc",
+   "lines": 89,
+   "public": "account"
+  },
+  {
+   "path": "docs/provenance/CUSTODY_INPUTS.json",
+   "size": 657,
+   "sha256": "54dffe0b9bbbcfb80872bbfa1e3f8e68f589fff009adb9f491a9cce5974c0a93",
+   "lines": 17,
+   "public": "account"
+  },
+  {
+   "path": "docs/provenance/SOURCE_FILE_MANIFEST.json",
+   "size": 78228,
+   "sha256": "03180dc43fcf010e5665ca55910b907d1239efdbde0fc28f45a7742b710c7fd9",
+   "lines": 1721,
+   "public": "account"
+  },
+  {
+   "path": "docs/provenance/SOURCE_TREE_HASH.json",
+   "size": 315,
+   "sha256": "a2d03641017af27d25979bcc842d2d747796630f480b7433b6a098ddda14db17",
+   "lines": 9,
+   "public": "full"
+  },
+  {
+   "path": "docs/provenance/SYSTEM_PINNING.lock",
+   "size": 473,
+   "sha256": "0f83dec8a0b67c63a2685122f80c392fd66df07a688bf86c6b8d44be05308317",
+   "lines": 15,
+   "public": "account"
+  },
+  {
+   "path": "docs/provenance/TOOLCHAIN.lock",
+   "size": 4633,
+   "sha256": "41f3d107a6dacdaef93faa7a9e54bf7c35506d6fd6d91bc712e166db1d3dd4f6",
+   "lines": 125,
+   "public": "account"
+  },
+  {
+   "path": "prometheus.yml",
+   "size": 304,
+   "sha256": "127c133f830f003e1716acf4f7fe0aa2a7546e801ae0592315df29bd73c01eb7",
+   "lines": 9,
+   "public": "account"
+  },
+  {
+   "path": "rebuild.json",
+   "size": 1443,
+   "sha256": "13240f426531023d03e4f4930629fa1f660274fe72d393850610e3f95465f120",
+   "lines": 38,
+   "public": "account"
+  },
+  {
+   "path": "rs-probe.go",
+   "size": 3179,
+   "sha256": "a8bdee17a3581f8685f58d7a8ccb7524153829f70b19c9d75e323c589de2ad8f",
+   "lines": 117,
+   "public": "account"
+  },
+  {
+   "path": "rs-probe.mod",
+   "size": 40,
+   "sha256": "a480b79acf98e4275725058076ad2a8684a2eee06c27f4337b75339c198ca92d",
+   "lines": 3,
+   "public": "account"
+  },
+  {
+   "path": "toolchain/BUILDKIT_TAG.txt",
+   "size": 22,
+   "sha256": "fcd530eeb02b063d2f047adad6eef896422a8e8d558513e5f09b2a262be32573",
+   "lines": 1,
+   "public": "full"
+  }
+ ],
+ "skipped": [],
+ "kit_adds": {
+  "bases": {
+   "files": 16,
+   "bytes": 326685578
+  },
+  "docs": {
+   "files": 1775,
+   "bytes": 32390045
+  },
+  "toolchain": {
+   "files": 1,
+   "bytes": 111529472
+  },
+  "vendored": {
+   "files": 84128,
+   "bytes": 777788994
+  }
+ },
+ "redacted_files": 0
+}

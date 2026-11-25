@@ -1,0 +1,6 @@
+image_manifest_digest=sha256:9c5c22442864bc05e0e0c197e131e31c30b56da95a342501687f9f950770e3fe
+config_digest=sha256:ba4843f192c3764916644f54e1a1edc2625f57677a2e93c3c8818639c39b74a4
+tag=readystack/prometheus:v3.16.0-CE-ubuntu24.04-r4
+probe_port=9090
+probe_path=/-/healthy
+probe_timeout=180
